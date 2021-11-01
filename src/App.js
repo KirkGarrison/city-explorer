@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import axios from "axios";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+
+constructor(props) {
+  super(props)
+  this.state = {
+    cityValue: ''
+  }
 }
 
-export default App;
+handleClick = () => {
+  const url = 'https://us1.locationiq.com/v1/search.php'
+  
+}
+
+handleChange = (e) => {
+  this.setState({ cityValue: e.target.value})
+}
+
+  render() {
+    return (
+      <div>
+        <input onChange={this.handleChange} value={this.state.cityValue}/>
+        <p>{this.state.cityValue}</p>
+        <button onClick={this.handleClick}>Explore</button>
+      </div>
+    )
+  }
+}
