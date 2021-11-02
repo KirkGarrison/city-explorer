@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-export default class Header extends Component {
+export default class SearchForm extends Component {
 
     constructor (props) {
         super(props);
@@ -16,7 +16,8 @@ handleChange = (e) => {
     this.setState({ cityName: e.target.value })
 }    
 
-handleClick = () => {
+handleClick = (e) => {
+    e.preventDefault();
     this.props.getLocation(this.state.cityName)
 }
     render() {

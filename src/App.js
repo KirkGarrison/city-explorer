@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Header from "./Header";
-import Main from "./Main";
+import CityCard from "./CityCard";
+import Searchform from "./SearchForm";
 import Alert from "react-bootstrap/Alert";
 
 
@@ -17,10 +17,10 @@ export default class App extends Component {
 
 
   getLocation = async (city) => {
-    const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_EXPLORER_KEY}&q=${this.state.city}&format=json`;
+    const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_EXPLORER_KEY}&q=${city}&format=json`;
     try {
-      let response = await axios.get(url);
-      this.setState({ location: response.data[0] }, this.getMapURL)
+      let response = await axios.get(url)
+      this.setState({ location: response.data[0]}, this.getMapURL)
     } catch (e) {
       console.error(e);
       this.setState({ error: true })
@@ -28,7 +28,7 @@ export default class App extends Component {
   }
 
   getMapURL = () => {
-    let url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_EXPLORER_KEY}&center=${this.state.location.lat},${this.state.location.lon}&zoom=13`;
+    let url = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_EXPLORER_KEY}&center=${this.state.location.lat},${this.state.location.lon}&zoom=13`;
     this.setState({
       location: { ...this.state.location, map: url }
     })
@@ -36,12 +36,9 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <Header getLocation={this.getLocation} />
-        {/* <input onChange={this.handleChange} value={this.state.cityValue} /> */}
-        <p>{this.state.cityValue}</p>
-        <button onClick={this.handleClick}>Explore</button>
-        {this.state.location.map && <Main location={this.state.location} />}
-        {this.state.error && <Alert variant=''}
+        <Searchform getLocation={this.getLocation} />
+        {this.state.location.map && <CityCard location={this.state.location} />}
+        {this.state.error && <Alert variant='danger'>There has been an error</Alert>}
       </div>
     )
   }

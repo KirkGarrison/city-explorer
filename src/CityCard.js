@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
 
 
-export default class Main extends Component {
+
+export default class CityCard extends Component {
     render() {
         return (
             <div>
@@ -15,9 +15,8 @@ export default class Main extends Component {
                             Latitude: {this.props.location.lat}
                         </Card.Text>
                         <Card.Text>
-                            Longitude: {this.props.location.lom}
+                            Longitude: {this.props.location.lon}
                         </Card.Text>
-                        <Button variant="primary">Go somewhere</Button>
                     </Card.Body>
                 </Card>
             </div>
