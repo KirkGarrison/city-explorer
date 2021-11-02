@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Header from "./Header";
+import Main from "./Main";
+import Alert from "react-bootstrap/Alert";
 
 
 export default class App extends Component {
@@ -7,33 +10,38 @@ export default class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      cityValue: '',
-      cityData: {},
+      error: false,
+      location: {}
     };
   }
 
 
-  handleClick = async () => {
-    const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_EXPLORER_KEY}&q=${this.state.cityValue}&format=json`;
-    let response = await axios.get(url);
-    this.setState({ location: response.data[0] });
-    this.setState({ lat: response.data[0] });
-    this.setState({ lon: response.data[0] });
+  getLocation = async (city) => {
+    const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_EXPLORER_KEY}&q=${this.state.city}&format=json`;
+    try {
+      let response = await axios.get(url);
+      this.setState({ location: response.data[0] }, this.getMapURL)
+    } catch (e) {
+      console.error(e);
+      this.setState({ error: true })
+    }
   }
 
-  handleChange = (e) => {
-    this.setState({ cityValue: e.target.value })
+  getMapURL = () => {
+    let url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_EXPLORER_KEY}&center=${this.state.location.lat},${this.state.location.lon}&zoom=13`;
+    this.setState({
+      location: { ...this.state.location, map: url }
+    })
   }
-
   render() {
     return (
       <div>
-        <input onChange={this.handleChange} value={this.state.cityValue} />
+        <Header getLocation={this.getLocation} />
+        {/* <input onChange={this.handleChange} value={this.state.cityValue} /> */}
         <p>{this.state.cityValue}</p>
         <button onClick={this.handleClick}>Explore</button>
-        {this.state.location && <h1>{this.state.location.display_name}</h1>}
-        {this.state.lat && <h2>Latitude {this.state.lat.lat} </h2>}
-        {this.state.lon && <h2>Longitude {this.state.lon.lon} </h2>}
+        {this.state.location.map && <Main location={this.state.location} />}
+        {this.state.error && <Alert variant=''}
       </div>
     )
   }
