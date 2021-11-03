@@ -2,8 +2,10 @@
 **Version**: 0.1.0
 
 ## Overview
-
+Request/Reponse cycle
 <img src ="Images/requestResponseCycle.PNG">
+API Request/Response cycle
+<img src ="Images/APIRequestResponseCycle.PNG">
 <!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
 
 ## Getting Started
@@ -20,7 +22,8 @@
 01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
 
 ## Credit and Collaborations
-Steve Ngo
+Steve Ngo - collaborator for Request/Response cycle
+Scott - collaborator for API Request/Response cycle
 
 Name of feature: City-Explorer
 
