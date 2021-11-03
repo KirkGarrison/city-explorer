@@ -3,6 +3,7 @@ import axios from "axios";
 import CityCard from "./CityCard";
 import Searchform from "./SearchForm";
 import Alert from "react-bootstrap/Alert";
+import "./style.css"
 
 
 
