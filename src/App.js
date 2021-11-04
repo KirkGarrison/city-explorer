@@ -3,6 +3,8 @@ import axios from "axios";
 import CityCard from "./CityCard";
 import Searchform from "./SearchForm";
 import Alert from "react-bootstrap/Alert";
+import Weather from "./Weather";
+import Footer from "./Footer";
 import "./App.css"
 
 
@@ -41,6 +43,8 @@ export default class App extends Component {
         <Searchform getLocation={this.getLocation} />
         {this.state.location.map && <CityCard location={this.state.location} />}
         {this.state.error && <Alert variant='danger'>There has been an error</Alert>}
+        {this.state.location.map && <Weather location={this.state.location} />}
+        <Footer/>
       </div>
     )
   }

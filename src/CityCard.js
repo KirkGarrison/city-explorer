@@ -3,6 +3,7 @@ import Card from "react-bootstrap/Card";
 
 
 
+
 export default class CityCard extends Component {
     render() {
         return (
