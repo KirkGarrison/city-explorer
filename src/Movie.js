@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 
 export default class Movie extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props)
         this.state = {
             movieListing: []
@@ -14,15 +16,19 @@ export default class Movie extends Component {
         let response = await axios.get(url);
         // console.log(response.data);
         // print array results on screen
-        this.setState({movieListing: response.data })
+        this.setState({ movieListing: response.data })
     }
 
-    render () {
+    render() {
         return (
-            <div>
+            <>
+            <Container>
+                <Row>
                 <button onClick={this.getMovieListing}>Get Movie Listings</button>
-                {this.state.movieListing.length > 0 && this.state.movieListing.map((movie, idx) => <li key={idx}>Title: {movie.title} Overview: {movie.overview} <img src={movie.image} alt={movie.title}/></li>)}
-            </div>
+            {this.state.movieListing.length > 0 && this.state.movieListing.map((movie, idx) => <li key={idx}>Title: {movie.title} Overview: {movie.overview} <img src={movie.image} alt={movie.title}/></li>)}
+                </Row>
+                </Container>
+                </>
         )
     }
 }
