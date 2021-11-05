@@ -9,7 +9,7 @@ export default class Weather extends Component {
         }
     }
 
-    getWeatherForcast = async () => {
+    getWeatherForecast = async () => {
         const url = `${process.env.REACT_APP_SERVER_URL}/weather?lat=${this.props.location.lat}&lon=${this.props.location.lon}`
         let response = await axios.get(url);
         // console.log(response.data);
@@ -20,8 +20,8 @@ export default class Weather extends Component {
     render () {
         return (
             <div>
-                <button onClick={this.getWeatherForcast}>Get Weather Forecast</button>
-                {this.state.weatherForcast.length > 0 && this.state.weatherForcast.map((dayForecast, idx) => <li key={idx}>date: {dayForecast.date} description:{dayForecast.description}</li>)}
+                <button onClick={this.getWeatherForecast}>Get Weather Forecast</button>
+                {this.state.weatherForecast.length > 0 && this.state.weatherForecast.map((dayForecast, idx) => <li key={idx}>Date: {dayForecast.date} Description: {dayForecast.description}</li>)}
             </div>
         )
     }

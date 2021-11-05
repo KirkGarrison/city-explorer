@@ -6,6 +6,8 @@ Request/Reponse cycle
 <img src ="Images/requestResponseCycle.PNG">
 API Request/Response cycle
 <img src ="Images/APIRequestResponseCycle.PNG">
+API Request/Response cycle with Weather and Movie API's
+<img src ="Images/APIwMWcycle.PNG">
 <!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
 
 ## Getting Started
